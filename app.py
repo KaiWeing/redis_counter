@@ -1,15 +1,18 @@
 from flask import Flask, redirect, g, render_template, url_for
 import redis
+import os
 
 app = Flask(__name__)
 
 DEBUG = True
+REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
+REDIS_PORT = int(os.getenv['REDIS_PORT', '6379'])
 
 app.config.from_object(__name__)
 
 
 def connect_db():
-	return redis.Redis(host='localhost', port=6379)
+	return redis.Redis(host=app.config['REDIS_HOST'], port=app.config['REDIS_PORT'])
 
 
 @app.before_request

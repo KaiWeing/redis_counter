@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 DEBUG = True
 REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
-REDIS_PORT = int(os.getenv['REDIS_PORT', '6379'])
+REDIS_PORT = int(os.getenv('REDIS_PORT', '6379'))
 
 app.config.from_object(__name__)
 
@@ -23,12 +23,15 @@ def before_request():
 @app.route('/')
 def index():
 	count = g.db.get('counter')
-	return render_template('index.html', count=int(count))
+	val = 0
+	if count:
+		val = int(count)
+	return render_template('index.html', count=val)
 
 
 @app.route('/count', methods=['POST'])
 def count_with_redis():
-	g.db.incr(name='counter')
+	g.db.incr('counter')
 	return redirect(url_for('index'))
 
 

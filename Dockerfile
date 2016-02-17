@@ -1,3 +1,4 @@
 FROM docteurfraise/flask-python34
 
-COPY . /usr/src/app
+RUN apt-get -yqq update && apt-get -yqq install curl redis-cli
+

@@ -1,10 +1,16 @@
-web:
-  build: .
-  ports:
-   - "80:80"
-  links:
-   - redis
-redis:
-  image: kaiweing/redis
-  ports:
-   - "6379:6379"
+version: '2'       
+                   
+services:          
+  webapp:          
+    build: .       
+    ports:         
+     - "80:80"     
+    networks:      
+     - counternet  
+  redis:           
+    image: redis
+    networks:      
+     - counternet  
+networks:          
+  counternet:      
+    driver: bridge 

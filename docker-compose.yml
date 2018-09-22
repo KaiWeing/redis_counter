@@ -4,7 +4,7 @@ services:
   webapp:          
     build: .       
     ports:         
-     - "980:80"     
+     - "80:80"     
     networks:      
      - counternet  
   redis:           

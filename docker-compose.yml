@@ -1,10 +1,10 @@
-version: '2'       
+version: '3'       
                    
 services:          
   webapp:          
     build: .       
     ports:         
-     - "80:80"     
+     - "980:80"     
     networks:      
      - counternet  
   redis:           
